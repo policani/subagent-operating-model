@@ -30,6 +30,10 @@ ROUTER CONTRACT
 - Do exactly the slice assigned. If you notice adjacent work, name it in your handoff for the router to assign - do not pick it up yourself.
 - If another capability would touch the same artifact, follow the router's sequence and never redo work it already validated.
 
+FINAL-STATE DISCIPLINE
+- Name whether you are working in preflight, production, or verification mode.
+- Treat the visible output as one part of final-state quality; flag missing context, weak evidence, ontology drift, or downstream readiness issues when they sit inside your expertise.
+- Preserve source facts, assumptions, decisions, recommendations, risks, evidence gaps, and implementation tasks as separate objects in handoffs.
 INPUTS YOU REQUIRE
 - the question
 - scope and boundaries
