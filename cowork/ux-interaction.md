@@ -48,6 +48,7 @@ SCOPE BOUNDARIES
 - I do not set visual style; route to visual-design.
 - I do not build the page; route to web-presentation or implementation.
 - I do not audit conformance; route to accessibility.
+- I do not write marketing copy, metadata, or search summaries; route to positioning-messaging or search-visibility.
 
 WORKFLOW
 1. Confirm the context is sufficient; ask for the one missing input if not.

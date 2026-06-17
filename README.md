@@ -31,7 +31,7 @@ flowchart TD
     R -. "conflict?" .-> ESC["escalate to a Decide capability"]
 ```
 
-Every request — even one that names a single capability — passes through the router first. For a simple ask the router does a fast, cheap pass and routes to one capability. For complex work it builds a dependency-ordered plan, passes each capability a tight **context packet** (not the whole transcript), gates each result before it flows downstream, then merges everything into one answer.
+Every request — even one that names a single capability — passes through the router first. For a simple ask the router does a fast, cheap pass and routes to one capability. For complex work it builds a dependency-ordered plan, passes each capability a tight **state packet** (not the whole transcript), gates each result before it flows downstream, then merges everything into one answer.
 
 ## The capabilities: 8 buckets, 28 narrow roles
 
@@ -64,10 +64,91 @@ No standing CEO/CTO/COO agents. Their real *capabilities* live as `decision-arbi
 
 ## Use cases
 
-- **Ship a feature without a swarm.** "Turn this rough idea into a built, documented change" → router runs `requirements-definition → architecture → implementation → quality-testing → documentation`, in order, once each.
+- **Ship a feature without a swarm.** "Turn this rough idea into a built, documented change" → router may run `requirements-definition -> documentation preflight -> architecture -> implementation -> quality-testing -> documentation`, in order, once each.
 - **Tighten public copy.** "Rewrite this landing page and make it findable" → `positioning-messaging → editorial-quality → search-visibility`, nothing repeated.
 - **De-risk a decision.** "Is this worth building?" → `product-strategy` and `value-economics` feed `decision-arbiter`; the router escalates the conflict instead of guessing.
 - **One-capability asks stay cheap.** "Proofread this" routes straight to `editorial-quality` with a one-line triage — no orchestration tax.
+
+## Final-state discipline
+
+The model treats each capability as a **state improver**, not just an artifact
+finisher. A capability's visible output is only the edge of its real job. The
+router should involve a capability early when its expertise can prevent rework,
+not only after an artifact exists.
+
+Every capability can operate in three modes:
+
+- **Preflight:** inspect intent, constraints, risks, user/customer lens, and
+  handoff readiness before work hardens.
+- **Production:** create or change the assigned artifact inside the approved
+  scope.
+- **Verification:** judge whether the result meets the capability's standard
+  and name what still blocks a good final state.
+
+Context packets become **state packets** for complex work. They should preserve
+goal, artifact, constraints, prior decisions, open decisions, assumptions,
+evidence available, evidence gaps, downstream consumer, stop gate, and what the
+capability may challenge. Source facts, assumptions, decisions,
+recommendations, risks, measurement signals, and implementation tasks are
+different objects; the router and capabilities must not collapse them into one
+undifferentiated summary.
+
+## Ownership gates
+
+For public-facing pages, the router separates **voice** from
+**discoverability**. `positioning-messaging` owns visible page copy, section
+labels, CTAs, and message hierarchy. `search-visibility` owns metadata,
+structured data, canonical/crawler signals, social previews, sitemaps, and
+machine-facing summaries such as `llms.txt`.
+
+Search can recommend query language, but it cannot put SEO or answer-engine
+scaffolding into rendered page copy. The default chain for public page work is
+`positioning-messaging -> editorial-quality -> search-visibility -> implementation`.
+
+Public pages also separate **reader-facing confidence** from internal evidence
+handling. Visible copy should explain what the reader can evaluate, not expose
+source-lineage notes, audit caveats, privacy rationale, SEO rationale,
+answer-engine strategy, prompt/tool limitations, or defensive legal/security
+language. Put those details in metadata, proof-boundary pages, documentation,
+or private review context unless the artifact is explicitly about proof,
+methodology, legal/security, docs, or SEO.
+
+The same rule applies anywhere capabilities can collide:
+
+- `ux-interaction` owns flow; `visual-design` owns the visual system;
+  `web-presentation` owns browser polish; `accessibility` owns inclusive-use
+  constraints; `implementation` preserves those decisions while coding.
+- `product-strategy` owns whether and why; `requirements-definition` owns
+  accepted scope; `architecture` owns solution shape; `implementation` owns the
+  code change.
+- `technical-governance` owns platform standards and technology risk;
+  `architecture` owns the selected design; `implementation` executes inside it.
+- `security-privacy` owns data and exposure risk; `legal-compliance` owns
+  policy, licensing, IP, privacy, and claims; `documentation` communicates only
+  approved behavior and boundaries.
+- `quality-testing` owns verification; `build-release-automation` owns
+  repeatable packaging/deploy mechanics; `launch-readiness` owns go/no-go,
+  rollback, and cutover.
+- `support-triage` owns user issue classification and escalation signals;
+  `implementation` owns accepted fixes; `documentation` owns verified help
+  content; `product-strategy` owns roadmap changes from repeated signals.
+
+Interchange rules should be designed per role pair. A few common patterns:
+
+- Requirements to documentation: explainability, terminology, and user mental
+  model are checked before implementation.
+- UX to documentation: task flow, labels, and user-facing language stay aligned.
+- Support to product: repeated pain becomes evidence, not an automatic roadmap
+  commitment.
+- Security to implementation: required fixes, accepted risks, and open exposure
+  are kept separate.
+- Search to positioning: query language can inform visible copy, but voice and
+  persuasion stay with positioning.
+- Quality testing to launch readiness: passing tests is evidence for release,
+  not release approval by itself.
+
+This is the core lesson: a subagent that only finishes its artifact will often
+miss the failure it exists to prevent.
 
 ## Quick start
 
@@ -95,8 +176,8 @@ Drop `.codex/agents/` into your Codex project. Invoke the `router` agent (`--age
 
 ## What makes it token-aware
 
-- **Minimum assignment.** Default to one capability; add another only for a genuinely different gate.
-- **Context packets, not transcripts.** Each capability gets goal + artifact path + constraints + the one question — referenced by name, not re-pasted.
+- **Minimum assignment.** Default to one capability; add another only when it protects the final state with a genuinely different gate.
+- **State packets, not transcripts.** Each capability gets the smallest useful packet: goal, artifact path, constraints, prior decisions, open decisions, evidence gaps, downstream consumer, the specific question, and the stop gate.
 - **No-rework rule.** Validated work is never redone; only deltas move forward.
 - **Quality gate + single consolidation.** The router merges once; capabilities never repeat each other.
 
@@ -107,13 +188,11 @@ Drop `.codex/agents/` into your Codex project. Invoke the `router` agent (`--age
 3. Skim two capability files (e.g. `cowork/implementation.md`, `cowork/positioning-messaging.md`) to see the consistent shape: focus → router contract → required inputs → token discipline → scope boundaries → handoff format.
 4. See `examples/routing-walkthrough.md` for one request routed end to end.
 
-## Who built this
+## Maintainer note
 
-Built by **Marco Policani** — a Director / Principal-level portfolio, PMO, and AI operating-systems leader. This kit is one of several public proofs of how I design AI-assisted operating systems: **evidence-bound, governance-first, and token-aware**, with human judgment owning the decisions.
-
-If you're a hiring manager or team lead evaluating that kind of work, this repo is a working sample of it — and there's more.
-
-➡️ **Explore the full portfolio, case studies, and other operating tools at [policani.net](https://policani.net).**
+This package is the general-use version of the operating model. It should stay
+operator-neutral: no personal portfolio copy, private project context, employer
+details, or identity-specific routing assumptions inside the reusable engine.
 
 ## License
 

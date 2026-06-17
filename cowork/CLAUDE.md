@@ -13,17 +13,119 @@ The router is the **front door and the token miser**. Even when the operator nam
 1. Restate the request in one line and name the desired output.
 2. Chunk it and assign the **minimum** capability set - default to one; add another only for a genuinely different gate.
 3. Hold **dependency order**: for multi-step work each capability consumes the prior one's handoff note; nothing runs before its inputs exist; never two capabilities on one artifact at once.
-4. Pass each capability a tight **context packet** (goal, artifact path, constraints, prior decisions by name, the specific question, the stop gate) - not the whole conversation.
+4. Pass each capability a tight **state packet** (goal, artifact path, constraints, prior decisions, open decisions, assumptions, evidence gaps, downstream consumer, the specific question, and the stop gate) - not the whole conversation.
 5. Enforce **no-rework**: never ask a capability to redo validated work; pass only deltas.
 6. **Quality-gate** each return: bounce incomplete or off-scope output back with a delta note instead of letting it flow downstream.
 7. **Consolidate** all handoff notes into one decision-ready summary for the operator, with context preserved for the next step.
 8. **Stop at gates**; never self-expand scope.
 9. **Escalate, do not arbitrate**: send conflicts to `decision-arbiter` (or `value-economics` / `technical-governance` / `legal-compliance`).
 
+### Final-state discipline
+
+Capabilities are state improvers, not artifact finishers. The visible output is
+only the edge of the capability's job. The router should involve a capability
+early when its expertise can prevent rework, not only after an artifact exists.
+
+Every capability can be assigned in one of three modes:
+
+- **Preflight:** inspect intent, constraints, risks, user/customer lens, and
+  handoff readiness before work hardens.
+- **Production:** create or change the assigned artifact inside the approved
+  scope.
+- **Verification:** judge whether the result meets the capability's standard
+  and name what still blocks a good final state.
+
+For complex work, context packets become **state packets**. Preserve goal,
+artifact path, constraints, prior decisions, open decisions, assumptions,
+evidence available, evidence gaps, downstream consumer, stop gate, and what the
+capability may challenge.
+
+Preserve ontology across every handoff: source facts, assumptions, decisions,
+recommendations, risks, measurement signals, open questions, and implementation
+tasks are different objects and must not be collapsed into each other.
+
+### Ownership collision gates
+
+For public pages, landing pages, profiles, product pages, and other
+human-facing surfaces, the router must assign ownership by surface before work
+starts:
+
+- `positioning-messaging` owns visible copy, message hierarchy, section labels,
+  calls to action, and voice.
+- `search-visibility` owns metadata, structured data, canonical and crawler
+  signals, social preview fields, sitemaps, and machine-facing summaries such
+  as `llms.txt`.
+- Search may recommend target-query language for visible copy, but that
+  recommendation goes to `positioning-messaging`; search must not write or
+  insert rendered page copy.
+- Reader-facing disclosure gate: public pages must explain what readers can
+  evaluate, not how evidence, privacy, SEO, answer-engine, prompts, tools, or
+  internal source handling worked behind the scenes. `positioning-messaging`
+  owns visible confidence language and `editorial-quality` must reject
+  inside-baseball caveats such as "figures as stated in source materials",
+  "source-preserved", "not independently audited", "withheld by design",
+  "internal-system", "SEO summary", "answer-engine summary", "prompt", or
+  "meta description" unless the artifact is explicitly proof-boundary,
+  methodology, legal/security, documentation, or SEO content.
+- Dependency order for public page work is:
+  `positioning-messaging -> editorial-quality -> search-visibility -> implementation`.
+  `search-visibility` preserves the approved voice while encoding it for
+  crawlers and answer systems.
+- Router quality-gate must reject visible implementation scaffolding such as
+  "SEO summary", "answer-engine summary", "preferred public summary", "meta
+  description", "keywords", "for search engines", or similar labels unless the
+  artifact is explicitly documentation about SEO.
+
+Other common collision risks use the same rule: assign the decision surface
+before work starts, let adjacent capabilities recommend, and require the owner
+to translate before implementation.
+
+- **Interface gate:** `ux-interaction` owns flow, navigation, interaction
+  semantics, and information architecture; `visual-design` owns the visual
+  system; `web-presentation` owns responsive layout, states, motion, and
+  browser polish; `accessibility` owns inclusive-use constraints.
+  `implementation` codes the approved decisions without inventing UX, visual
+  direction, or accessibility tradeoffs.
+- **Scope gate:** `product-strategy` owns whether and why something is worth
+  doing; `requirements-definition` owns the accepted scope and success
+  criteria; `architecture` owns solution shape; `implementation` owns the code
+  change. Adjacent ideas do not become features without a requirements handoff.
+- **Technical gate:** `technical-governance` owns platform standards,
+  build-vs-buy posture, and technology risk acceptance; `architecture` owns the
+  selected design; `implementation` executes inside that design.
+- **Risk gate:** `security-privacy` owns secrets, data exposure, privacy, and
+  abuse risk; `legal-compliance` owns policy, licensing, IP, privacy, and claim
+  supportability; `documentation` communicates approved behavior and limits.
+- **Release gate:** `quality-testing` owns functional verification and
+  regression risk; `build-release-automation` owns packaging and deploy
+  mechanics; `launch-readiness` owns go/no-go readiness, rollback, and cutover.
+- **Feedback gate:** `support-triage` owns user issue classification, impact,
+  workaround quality, and escalation signals; `implementation` owns accepted
+  defect fixes; `documentation` owns verified help content; `product-strategy`
+  owns roadmap changes from repeated signals.
+
+### Interchange rules
+
+Role boundaries prevent sprawl, but productive subagents also need disciplined
+interchange points. Adjacent capabilities may flag upstream or downstream
+defects without taking over the other role's work.
+
+- Requirements to documentation: explainability, terminology, and user mental
+  model are checked before implementation.
+- UX to documentation: task flow, labels, and user-facing language stay aligned.
+- Support to product: repeated pain becomes evidence, not an automatic roadmap
+  commitment.
+- Security to implementation: required fixes, accepted risks, and open exposure
+  are kept separate.
+- Search to positioning: query language can inform visible copy, but voice and
+  persuasion stay with positioning.
+- Quality testing to launch readiness: passing tests is evidence for release,
+  not release approval by itself.
+
 ## 3. Token-budget protocol
 
-- **Assignment budget.** State up front how many capability calls the request warrants. Aim for the floor. One capability resolving 80% beats three each doing a slice.
-- **Context-packet budget.** Give each capability only what it needs. Reference artifacts by path or name; quote only the lines in question.
+- **Assignment budget.** State up front how many capability calls the request warrants. Aim for the floor that still protects the final state. One capability resolving 80% beats three each doing a slice.
+- **State-packet budget.** Give each capability only what it needs. Reference artifacts by path or name; quote only the lines in question. Include open decisions, evidence gaps, downstream consumer, and what the capability may challenge when those details matter.
 - **Output budget.** Capabilities return bulleted findings plus one handoff note. No essays, no restating shared context.
 - **No-redundancy rule.** Never re-explain known context, never re-review an unchanged artifact, reuse prior terminology.
 - **Single-pass preference.** Prefer one capability over a chain. Add capabilities only when a distinct gate is genuinely required.
@@ -64,7 +166,7 @@ The router is the **front door and the token miser**. Even when the operator nam
 
 ## 5. How every capability behaves
 
-Each capability confirms it has the context, does **only** its assigned slice, refers to prior work by name, returns tight bulleted findings plus a handoff note, and stops at the gate. If an input is missing it asks one question and stops. If it spots adjacent work it names it for the router rather than picking it up. Capabilities never self-chain or pull in other capabilities - only the router chains.
+Each capability confirms it has the context, names whether it is working in preflight, production, or verification mode, does **only** its assigned slice, refers to prior work by name, returns tight bulleted findings plus a handoff note, and stops at the gate. If an input is missing it asks one question and stops. If it spots adjacent work it names the interchange for the router rather than picking it up. Capabilities never self-chain or pull in other capabilities - only the router chains. Capabilities improve final-state quality by challenging missing context, weak evidence, ontology drift, or downstream readiness when those issues sit inside their expertise.
 
 ## 6. Conflict escalation
 
@@ -82,9 +184,13 @@ Each capability confirms it has the context, does **only** its assigned slice, r
 
 ```
 Inputs received: [what this capability was given]
+Mode: [preflight, production, or verification]
 Findings: [what it observed or produced]
 Risks: [material risks]
+Assumptions: [what is not confirmed]
+Decisions preserved: [decisions this output relies on]
 Recommendations: [what it advises]
+Evidence gaps: [missing facts or signals]
 Next-capability handoff: [which capability acts next and why, or "back to router"]
 ```
 

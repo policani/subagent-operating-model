@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-label="Subagent Operating Model infographic: one router converts a request into the minimum capability plan, passes context packets through a quality gate, and returns one clean result.">
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbfc"/>
+      <stop offset="0.56" stop-color="#eef5f7"/>
+      <stop offset="1" stop-color="#e7f0f2"/>
+    </linearGradient>
+    <linearGradient id="routerFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f6f8f"/>
+      <stop offset="1" stop-color="#1f4f6a"/>
+    </linearGradient>
+    <filter id="shadow" x="-8%" y="-12%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#122034" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f6f8f"/>
+    </marker>
+    <style>
+      text{font-family:"Segoe UI Variable Text","Segoe UI",ui-sans-serif,system-ui,sans-serif;letter-spacing:0}
+      .eyebrow{font-family:"Segoe UI Variable Small","Segoe UI",ui-sans-serif,system-ui,sans-serif;font-size:37px;font-weight:780;fill:#55717f}
+      .title{font-family:"Segoe UI Variable Display","Segoe UI",ui-sans-serif,system-ui,sans-serif;font-size:82px;font-weight:780;fill:#111827}
+      .subtitle{font-size:39px;font-weight:650;fill:#334b5b}
+      .section{font-size:24px;font-weight:780;fill:#55717f}
+      .label{font-size:32px;font-weight:760;fill:#142235}
+      .small{font-size:23px;font-weight:680;fill:#536476}
+      .tiny{font-size:19px;font-weight:700;fill:#647383}
+      .footer{font-size:28px;font-weight:760;fill:#344456}
+      .reverse{fill:#ffffff}
+      .node{fill:#ffffff;stroke:#cedde4;stroke-width:3}
+      .lane{fill:#f7fafb;stroke:#d8e5ea;stroke-width:3}
+      .gate{fill:#fff9eb;stroke:#c9922e;stroke-width:3}
+      .flow{fill:none;stroke:#2f6f8f;stroke-width:6;stroke-linecap:round}
+      .handoff{fill:none;stroke:#9fb4c0;stroke-width:4;stroke-linecap:round;stroke-dasharray:9 11}
+      .soft{fill:none;stroke:#9fb8c2;stroke-width:4;stroke-linecap:round;stroke-dasharray:9 11}
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#pageBg)"/>
+  <rect x="64" y="64" width="1792" height="952" rx="30" fill="#ffffff" stroke="#d7e4e9" stroke-width="3" filter="url(#shadow)"/>
+
+  <text x="136" y="158" class="eyebrow">AI WORKFLOW DESIGN</text>
+  <text x="136" y="276" class="title">One router turns agent</text>
+  <text x="136" y="368" class="title">sprawl into governed work.</text>
+  <text x="138" y="462" class="subtitle">Route once, hand off tight context, and quality-gate the work</text>
+  <text x="138" y="516" class="subtitle">before it becomes the final answer.</text>
+
+  <g transform="translate(1282 138)">
+    <rect class="lane" x="0" y="0" width="438" height="218" rx="24"/>
+    <text x="44" y="66" class="label">What it prevents</text>
+    <circle cx="52" cy="112" r="8" fill="#2f6f8f"/>
+    <text x="76" y="121" class="small">Duplicate context.</text>
+    <circle cx="52" cy="154" r="8" fill="#2f6f8f"/>
+    <text x="76" y="163" class="small">Overlapping roles.</text>
+    <circle cx="52" cy="196" r="8" fill="#c9922e"/>
+    <text x="76" y="205" class="small">Ungated output.</text>
+  </g>
+
+  <g transform="translate(136 600)">
+    <rect class="lane" x="0" y="0" width="300" height="250" rx="24"/>
+    <text x="30" y="42" class="section">INPUT</text>
+    <rect class="node" x="30" y="72" width="240" height="132" rx="18"/>
+    <circle cx="70" cy="108" r="20" fill="url(#routerFill)"/>
+    <text x="70" y="116" text-anchor="middle" class="tiny reverse">1</text>
+    <text x="150" y="116" text-anchor="middle" class="label">Request</text>
+    <text x="150" y="155" text-anchor="middle" class="tiny">goal, artifact,</text>
+    <text x="150" y="180" text-anchor="middle" class="tiny">constraints</text>
+    <path class="flow" d="M320 125 H382" marker-end="url(#arrow)"/>
+
+    <rect class="lane" x="408" y="0" width="320" height="250" rx="24"/>
+    <text x="438" y="42" class="section">ROUTER</text>
+    <circle cx="568" cy="124" r="84" fill="#f3f8fa" stroke="#2f6f8f" stroke-width="4"/>
+    <circle cx="568" cy="124" r="48" fill="url(#routerFill)"/>
+    <text x="568" y="134" text-anchor="middle" class="label reverse">Router</text>
+    <text x="568" y="226" text-anchor="middle" class="small">front door + token miser</text>
+    <path class="flow" d="M748 125 H810" marker-end="url(#arrow)"/>
+
+    <rect class="lane" x="812" y="0" width="340" height="250" rx="24"/>
+    <text x="842" y="42" class="section">MINIMUM PLAN</text>
+    <rect x="848" y="72" width="116" height="54" rx="14" fill="#edf3fb" stroke="#b8c8dc" stroke-width="2"/>
+    <text x="906" y="106" text-anchor="middle" class="tiny">Strategy</text>
+    <path class="handoff" d="M972 99 H998"/>
+    <rect x="1004" y="72" width="110" height="54" rx="14" fill="#edf3fb" stroke="#b8c8dc" stroke-width="2"/>
+    <text x="1059" y="106" text-anchor="middle" class="tiny">Design</text>
+    <path class="handoff" d="M1059 132 V154"/>
+    <rect x="1004" y="160" width="110" height="54" rx="14" fill="#f7fafb" stroke="#cbd9df" stroke-width="2"/>
+    <text x="1059" y="194" text-anchor="middle" class="tiny">Build</text>
+    <path class="handoff" d="M998 187 H972"/>
+    <rect x="848" y="160" width="116" height="54" rx="14" fill="#fff9eb" stroke="#d6a044" stroke-width="2"/>
+    <text x="906" y="194" text-anchor="middle" class="tiny">Verify</text>
+    <text x="982" y="232" text-anchor="middle" class="small">context packets, not transcripts</text>
+    <path class="flow" d="M1172 125 H1204" marker-end="url(#arrow)"/>
+
+    <rect class="gate" x="1224" y="42" width="200" height="166" rx="22"/>
+    <circle cx="1262" cy="84" r="20" fill="#c9922e"/>
+    <text x="1262" y="92" text-anchor="middle" class="tiny reverse">3</text>
+    <text x="1330" y="94" text-anchor="middle" class="label">Quality</text>
+    <text x="1330" y="134" text-anchor="middle" class="label">gate</text>
+    <text x="1324" y="176" text-anchor="middle" class="tiny">scope, conflict</text>
+    <path class="flow" d="M1440 125 H1452" marker-end="url(#arrow)"/>
+
+    <rect class="node" x="1468" y="42" width="176" height="166" rx="22"/>
+    <text x="1556" y="96" text-anchor="middle" class="label">Clean</text>
+    <text x="1556" y="136" text-anchor="middle" class="label">result</text>
+    <text x="1556" y="176" text-anchor="middle" class="tiny">context kept</text>
+  </g>
+
+  <g transform="translate(136 904)">
+    <line x1="0" y1="0" x2="1320" y2="0" class="soft"/>
+    <text x="0" y="54" class="footer">policani.net/resources.html#ai-tools</text>
+    <text x="1012" y="54" class="footer">Less token waste. Less rework. Less role sprawl.</text>
+  </g>
+</svg>

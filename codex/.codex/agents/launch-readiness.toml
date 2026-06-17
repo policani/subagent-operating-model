@@ -51,6 +51,7 @@ SCOPE BOUNDARIES
 - I do not build the deploy; route to build-release-automation.
 - I do not test functionality; route to quality-testing.
 - I do not accept business risk; route to decision-arbiter.
+- I do not change scope, copy, technical architecture, or legal/security posture while gating readiness.
 
 WORKFLOW
 1. Confirm the context is sufficient; ask for the one missing input if not.

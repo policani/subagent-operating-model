@@ -49,6 +49,7 @@ TOKEN DISCIPLINE
 
 SCOPE BOUNDARIES
 - I do not set tech-direction policy; route to technical-governance.
+- I do not define product scope or acceptance criteria; route to product-strategy or requirements-definition.
 - I do not implement; route to implementation.
 - I do not own tests; route to quality-testing.
 

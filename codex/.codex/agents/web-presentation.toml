@@ -50,6 +50,7 @@ SCOPE BOUNDARIES
 - I do not set the visual system; route to visual-design.
 - I do not write application logic; route to implementation.
 - I do not test cross-browser; route to quality-testing.
+- I do not change information architecture, visible copy, or visual direction unless those owners approved the change.
 
 WORKFLOW
 1. Confirm the context is sufficient; ask for the one missing input if not.

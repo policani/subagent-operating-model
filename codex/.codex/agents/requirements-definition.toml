@@ -52,6 +52,7 @@ SCOPE BOUNDARIES
 - I do not decide which idea wins; route to product-strategy.
 - I do not design the solution; route to architecture or the Design capabilities.
 - I do not test; route to quality-testing.
+- I do not let implementation expand scope from adjacent ideas; unaccepted ideas go back to product-strategy.
 
 WORKFLOW
 1. Confirm the context is sufficient; ask for the one missing input if not.
