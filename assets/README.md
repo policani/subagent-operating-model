@@ -7,5 +7,8 @@ Public-safe infographic assets for the Subagent Operating Model.
 - `subagent-operating-model-social-card.svg` /
   `subagent-operating-model-social-card.png` - 1200x627 social/link preview
   version. This also backs the updated `policani.net` LinkedIn-style asset.
+- `ai-workflow-design.png` - current README and portfolio-resource graphic
+  showing the router-first workflow from request to quality gate to clean
+  result.
 
 The SVG files are the editable sources. The PNG files are rendered outputs.

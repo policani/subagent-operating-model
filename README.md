@@ -2,7 +2,9 @@
 
 **A router-first, capability-based operating model for AI subagents — built for Codex (GPT) and Claude Code / Cowork.**
 
-One router sits in front of every request. It triages the ask, chunks it into the *fewest* expert capabilities that can actually cover it, holds the dependency order, gates quality between steps, and hands back a single clean result with context preserved. It exists to kill the three things that quietly wreck multi-agent setups: **token waste, duplicated rework, and role sprawl.**
+![AI workflow design: one router turns agent sprawl into governed work.](assets/ai-workflow-design.png)
+
+One router sits in front of every request. It triages the ask, chunks it into the *fewest* expert capabilities that still protect the final state, holds the dependency order, passes compact state packets, gates quality between steps, and hands back a single clean result with the important state preserved. It exists to kill the three things that quietly wreck multi-agent setups: **token waste, duplicated rework, and role sprawl.**
 
 > **Status:** Public reference implementation (v1). Plain Markdown for Claude Code / Cowork, TOML for Codex. No build step, no dependencies, no API keys. Copy the folder and go.
 
