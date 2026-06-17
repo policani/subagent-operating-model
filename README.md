@@ -35,7 +35,7 @@ flowchart TD
 
 Every request — even one that names a single capability — passes through the router first. For a simple ask the router does a fast, cheap pass and routes to one capability. For complex work it builds a dependency-ordered plan, passes each capability a tight **state packet** (not the whole transcript), gates each result before it flows downstream, then merges everything into one answer.
 
-## The capabilities: 8 buckets, 28 narrow roles
+## The capabilities: 8 buckets, 29 agent files
 
 Capabilities are grouped into human-readable **buckets** so you can see which family of work is firing and where to optimize.
 
@@ -44,23 +44,23 @@ flowchart LR
     ROUTE["Route"] --> r1["router"]
     DECIDE["Decide"] --> d1["decision-arbiter"] & d2["value-economics"] & d3["technical-governance"]
     DISCOVER["Discover"] --> s1["product-strategy"] & s2["requirements-definition"] & s3["feasibility-research"] & s4["desk-research"]
-    DESIGN["Design"] --> g1["ux-interaction"] & g2["visual-design"] & g3["web-presentation"]
+    DESIGN["Design"] --> g1["ux-interaction"] & g2["visual-design"] & g3["typography"] & g4["web-presentation"]
     BUILD["Build"] --> b1["architecture"] & b2["implementation"] & b3["build-release-automation"]
     VERIFY["Verify"] --> v1["quality-testing"] & v2["security-privacy"] & v3["accessibility"] & v4["editorial-quality"]
     COMM["Communicate"] --> c1["positioning-messaging"] & c2["sales-motion"] & c3["offer-packaging"] & c4["documentation"] & c5["search-visibility"]
     OPS["Operate & Govern"] --> o1["operating-cadence"] & o2["launch-readiness"] & o3["support-triage"] & o4["legal-compliance"] & o5["job-fit-calibration"]
 ```
 
-| Bucket | What it owns | Capabilities |
-|---|---|---|
-| **Route** | Triage, routing, consolidation | `router` |
-| **Decide** | Tradeoffs, money, tech direction | `decision-arbiter` · `value-economics` · `technical-governance` |
-| **Discover** | Strategy, requirements, research | `product-strategy` · `requirements-definition` · `feasibility-research` · `desk-research` |
-| **Design** | Flow, visuals, web polish | `ux-interaction` · `visual-design` · `web-presentation` |
-| **Build** | Architecture, code, release automation | `architecture` · `implementation` · `build-release-automation` |
-| **Verify** | Testing, security, accessibility, editing | `quality-testing` · `security-privacy` · `accessibility` · `editorial-quality` |
-| **Communicate** | Positioning, sales, docs, SEO | `positioning-messaging` · `sales-motion` · `offer-packaging` · `documentation` · `search-visibility` |
-| **Operate & Govern** | Cadence, launch, support, legal, hiring fit | `operating-cadence` · `launch-readiness` · `support-triage` · `legal-compliance` · `job-fit-calibration` |
+| Bucket | What it owns | Capabilities | Traditional role names routed here |
+|---|---|---|---|
+| **Route** | Triage, routing, consolidation | `router` | Orchestrator, dispatcher, program coordinator |
+| **Decide** | Tradeoffs, money, tech direction | `decision-arbiter` · `value-economics` · `technical-governance` | CEO, COO, CFO, CTO, Head of Product, Head of Engineering, finance |
+| **Discover** | Strategy, requirements, research | `product-strategy` · `requirements-definition` · `feasibility-research` · `desk-research` | Product management, product manager, R&D, researcher |
+| **Design** | Flow, visual system, typography, web polish | `ux-interaction` · `visual-design` · `typography` · `web-presentation` | UX designer, graphic designer, typographer, type designer, web designer |
+| **Build** | Architecture, code, release automation | `architecture` · `implementation` · `build-release-automation` | Solution architect, software developer, release engineer, DevOps |
+| **Verify** | Testing, security, accessibility, editing | `quality-testing` · `security-privacy` · `accessibility` · `editorial-quality` | Tester, QA, security reviewer, privacy reviewer, accessibility specialist, editor |
+| **Communicate** | Positioning, sales, docs, SEO | `positioning-messaging` · `sales-motion` · `offer-packaging` · `documentation` · `search-visibility` | Marketing, Head of Marketing, sales, Head of Sales, consulting services, technical writer, SEO specialist |
+| **Operate & Govern** | Cadence, launch, support, legal, hiring fit | `operating-cadence` · `launch-readiness` · `support-triage` · `legal-compliance` · `job-fit-calibration` | Operations, COO execution cadence, commissioning, support, legal, HR |
 
 No standing CEO/CTO/COO agents. Their real *capabilities* live as `decision-arbiter`, `value-economics`, and `technical-governance` — and a built-in **legacy alias map** means you can still type "as marketing" or "have the CTO review this" and the router maps it to the right capability.
 
@@ -118,6 +118,7 @@ methodology, legal/security, docs, or SEO.
 The same rule applies anywhere capabilities can collide:
 
 - `ux-interaction` owns flow; `visual-design` owns the visual system;
+  `typography` owns type systems and readable text presentation;
   `web-presentation` owns browser polish; `accessibility` owns inclusive-use
   constraints; `implementation` preserves those decisions while coding.
 - `product-strategy` owns whether and why; `requirements-definition` owns
@@ -160,7 +161,7 @@ miss the failure it exists to prevent.
 cowork/
   CLAUDE.md        # the operating model (router, buckets, token rules)
   router.md        # the front door
-  <capability>.md  # 27 narrow capabilities
+  <capability>.md  # 28 non-router capabilities
 ```
 
 Point your assistant at `cowork/CLAUDE.md`, then drive it in plain language: `/subagent <request>`, `/agent <request>`, `@router`, or just name a capability ("as positioning-messaging ..."). The router triages from there.
@@ -171,7 +172,7 @@ Point your assistant at `cowork/CLAUDE.md`, then drive it in plain language: `/s
 codex/
   AGENTS.md                  # the operating model (mirrors CLAUDE.md)
   CLAUDE.md                  # identical copy
-  .codex/agents/*.toml       # router + 27 capabilities, each with model + tools
+  .codex/agents/*.toml       # router + 28 capabilities, each with model + tools
 ```
 
 Drop `.codex/agents/` into your Codex project. Invoke the `router` agent (`--agent router`) or describe the goal in prose — Codex matches the capability from its keywords.
@@ -202,4 +203,4 @@ Code and configuration are licensed under **MIT**. Documentation and examples ar
 
 ---
 
-*Keywords: AI subagents, Claude Code subagents, Codex agents, multi-agent orchestration, agent router, capability-based agents, AI agent operating model, token optimization, AI workflow governance, Claude Agent SDK, Cowork subagents.*
+*Keywords: AI subagents, Claude Code subagents, Codex agents, multi-agent orchestration, agent router, capability-based agents, AI agent operating model, token optimization, AI workflow governance, typography subagent, Claude Agent SDK, Cowork subagents.*

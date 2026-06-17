@@ -80,12 +80,28 @@ Other common collision risks use the same rule: assign the decision surface
 before work starts, let adjacent capabilities recommend, and require the owner
 to translate before implementation.
 
+- **Typography/content gate:** `typography` owns type scale, font choice,
+  readable hierarchy, measure, text rhythm, typography tokens, and
+  typography-adjacent semantics. For existing artifacts, route typography as a
+  strict pass by default: preserve visible text, section order, component
+  inventory, navigation, links, existing palette, imagery, graphics, and
+  background system. Typography may adjust type, text spacing, measure,
+  wrapping, font stack, and text-related tokens, but must not invent or rewrite
+  copy, add rendered recommendation panels, add tables/sidebars/cards/labels,
+  introduce new visual metaphors, or change colors/backgrounds unless the
+  operator explicitly approves an annotated mockup, visual exploration, or
+  redesign. Copywriting routes to `positioning-messaging`; proofreading routes
+  to `editorial-quality`; color/imagery/art direction routes to
+  `visual-design`; layout and responsive presentation routes to
+  `web-presentation`.
 - **Interface gate:** `ux-interaction` owns flow, navigation, interaction
   semantics, and information architecture; `visual-design` owns the visual
-  system; `web-presentation` owns responsive layout, states, motion, and
-  browser polish; `accessibility` owns inclusive-use constraints.
-  `implementation` codes the approved decisions without inventing UX, visual
-  direction, or accessibility tradeoffs.
+  system, color, imagery, iconography, composition, and art direction;
+  `typography` owns type systems and readable text presentation;
+  `web-presentation` owns responsive layout, states, motion, and browser
+  polish; `accessibility` owns inclusive-use constraints. `implementation`
+  codes the approved decisions without inventing UX, visual direction,
+  typography, or accessibility tradeoffs.
 - **Scope gate:** `product-strategy` owns whether and why something is worth
   doing; `requirements-definition` owns the accepted scope and success
   criteria; `architecture` owns solution shape; `implementation` owns the code
@@ -144,7 +160,8 @@ defects without taking over the other role's work.
 | Discover | `feasibility-research` | De-risk unknowns through small proof-of-concept experiments; turn 'can this even work' into evidence. | rd |
 | Discover | `desk-research` | Gather and synthesize external facts, sources, and prior art into a compact, cited briefing. | none - new capability |
 | Design | `ux-interaction` | Own user flow, interaction design, information architecture, and usability: how it works to use. | user-experience |
-| Design | `visual-design` | Own visual direction: art direction, typography, color, imagery, iconography, and reusable visual systems. | graphic-design |
+| Design | `visual-design` | Own visual direction: art direction, color, imagery, iconography, composition, and reusable visual systems. | graphic-design |
+| Design | `typography` | Own typography as a content-support system: type scale, font choice, hierarchy, text rhythm, measure, type tokens, readability, and typography-adjacent semantics. | typographer, type-design |
 | Design | `web-presentation` | Own browser-facing polish: responsive layout, reactive states, motion, and component presentation. | web-design |
 | Build | `architecture` | Design the specific solution shape: integration patterns, data flow, scalability, and nonfunctional tradeoffs. | solution-architect |
 | Build | `implementation` | Write and refactor the actual code, sites, components, and automations to a maintainable standard. | software-development |
@@ -225,6 +242,8 @@ The old job-title roles are retired as roles but kept as routing aliases, so exi
 | `support` | `support-triage` |
 | `technical-writer` | `documentation` |
 | `tester` | `quality-testing` |
+| `typographer` | `typography` |
+| `type-design` | `typography` |
 | `user-experience` | `ux-interaction` |
 | `web-design` | `web-presentation` |
 
