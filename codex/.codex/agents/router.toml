@@ -61,7 +61,9 @@ INTERCHANGE RULES
 - UX -> documentation: task flow, labels, and user-facing language stay aligned.
 - Support -> product: repeated pain becomes evidence, not an automatic roadmap commitment.
 - Security -> implementation: required fixes, accepted risks, and open exposure are kept separate.
+- Desk research -> positioning: when marketing depends on current customer language, audience phrasing, Reddit/forum/review language, persona feedback, or market-fit diagnosis, desk-research gathers external voice-of-customer evidence before positioning-messaging turns it into claims, message hierarchy, and copy.
 - Search -> positioning: query language can inform visible copy, but voice and persuasion stay with positioning.
+- Search metadata guardrail: when SEO/AEO tools report too few or too many keywords, route to search-visibility to fix metadata focus, length, crawlability, and machine-facing summaries. Do not create keyword lists or visible SEO scaffolding; use practical ranges for titles, descriptions, structured descriptions, and llms.txt while preserving approved page voice.
 - Quality testing -> launch readiness: passing tests is evidence for release, not release approval by itself.
 
 TOKEN BUDGET YOU DECLARE UP FRONT

@@ -68,6 +68,8 @@ No standing CEO/CTO/COO agents. Their real *capabilities* live as `decision-arbi
 
 - **Ship a feature without a swarm.** "Turn this rough idea into a built, documented change" → router may run `requirements-definition -> documentation preflight -> architecture -> implementation -> quality-testing -> documentation`, in order, once each.
 - **Tighten public copy.** "Rewrite this landing page and make it findable" → `positioning-messaging → editorial-quality → search-visibility`, nothing repeated.
+- **Diagnose product positioning.** "What problem does this solve, how do customers describe it, and should the marketing change?" → `desk-research → positioning-messaging`, with customer language kept separate from positioning inference.
+- **Fix SEO/AEO warnings sanely.** "Bing says my titles or descriptions are too short, too long, or keyword-light" → `search-visibility`, which tunes metadata ranges, crawler access, structured data, and machine-facing summaries without keyword stuffing.
 - **De-risk a decision.** "Is this worth building?" → `product-strategy` and `value-economics` feed `decision-arbiter`; the router escalates the conflict instead of guessing.
 - **One-capability asks stay cheap.** "Proofread this" routes straight to `editorial-quality` with a one-line triage — no orchestration tax.
 
@@ -145,8 +147,17 @@ Interchange rules should be designed per role pair. A few common patterns:
   commitment.
 - Security to implementation: required fixes, accepted risks, and open exposure
   are kept separate.
+- Desk research to positioning: when marketing depends on current customer
+  language, audience phrasing, Reddit/forum/review language, persona feedback,
+  or market-fit diagnosis, `desk-research` gathers external voice-of-customer
+  evidence before `positioning-messaging` turns it into claims, message
+  hierarchy, and copy.
 - Search to positioning: query language can inform visible copy, but voice and
   persuasion stay with positioning.
+- Search metadata guardrail: SEO/AEO warnings about keyword count or title and
+  description length route to `search-visibility`. It uses practical metadata
+  ranges and crawler-access checks, but does not create keyword lists or visible
+  SEO scaffolding.
 - Quality testing to launch readiness: passing tests is evidence for release,
   not release approval by itself.
 
