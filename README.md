@@ -170,23 +170,23 @@ miss the failure it exists to prevent.
 
 ```text
 cowork/
-  CLAUDE.md        # the operating model (router, buckets, token rules)
+  CLAUDE.md        # Cowork-framed operating model
   router.md        # the front door
-  <capability>.md  # 28 non-router capabilities
+  <capability>.md  # 28 Markdown capabilities
 ```
 
-Point your assistant at `cowork/CLAUDE.md`, then drive it in plain language: `/subagent <request>`, `/agent <request>`, `@router`, or just name a capability ("as positioning-messaging ..."). The router triages from there.
+Point your assistant at `cowork/CLAUDE.md`, then drive it in plain language: `/subagent <request>`, `/agent <request>`, `@router`, or just name a capability ("as positioning-messaging ..."). Cowork uses Markdown agent files, YAML front matter, tool/MCP restrictions, and project-vs-global placement.
 
 **Codex (GPT)**
 
 ```text
 codex/
-  AGENTS.md                  # the operating model (mirrors CLAUDE.md)
-  CLAUDE.md                  # identical copy
+  AGENTS.md                  # Codex-framed operating model
+  CLAUDE.md                  # companion copy for mixed-client projects
   .codex/agents/*.toml       # router + 28 capabilities, each with model + tools
 ```
 
-Drop `.codex/agents/` into your Codex project. Invoke the `router` agent (`--agent router`) or describe the goal in prose — Codex matches the capability from its keywords.
+Drop `.codex/agents/` into your Codex project. Invoke the `router` agent (`--agent router`) or describe the goal in prose. Codex uses TOML metadata, natural-language matching, and explicit tool grants.
 
 ## What makes it token-aware
 
@@ -194,6 +194,15 @@ Drop `.codex/agents/` into your Codex project. Invoke the `router` agent (`--age
 - **State packets, not transcripts.** Each capability gets the smallest useful packet: goal, artifact path, constraints, prior decisions, open decisions, evidence gaps, downstream consumer, the specific question, and the stop gate.
 - **No-rework rule.** Validated work is never redone; only deltas move forward.
 - **Quality gate + single consolidation.** The router merges once; capabilities never repeat each other.
+- **Trigger tuning.** Capability descriptions are short trigger contracts, not essays. If the wrong agent fires, inspect the exact request, metadata/front matter, and nearby collisions before creating another agent.
+- **Least-privilege delegation.** Review and research agents should be read-only by default; write tools and broad MCP/data access belong only where the approved task requires them.
+
+Use a subagent when the work would flood the main context, read many files,
+produce output the operator will not reread, repeat as a known workflow, run
+independently in parallel, or benefit from a fresh reviewer. Keep work inline
+when it is a quick edit, depends on the full conversation, needs direct user
+questions, has tightly dependent steps, or the routing overhead is larger than
+the work.
 
 ## How to evaluate this repo (2 minutes)
 

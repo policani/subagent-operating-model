@@ -157,6 +157,40 @@ defects without taking over the other role's work.
 - **Single-pass preference.** Prefer one capability over a chain. Add capabilities only when a distinct gate is genuinely required.
 - **Consolidation over repetition.** The router merges once; capabilities never repeat each other.
 
+### Agent authoring and evaluation protocol
+
+- In Cowork, the trigger surface is the Markdown agent file: YAML front matter
+  such as `name`, `description`, `model`, `tools`, `disallowed_tools`, MCP
+  access, skills, color, and memory when supported. Keep descriptions short
+  enough to scan and specific enough to avoid accidental invocation.
+- Treat YAML front matter as progressive disclosure. Cowork reads the name and
+  description before loading the whole agent, so the body should hold process
+  detail while the description stays trigger-focused.
+- Use project-level agents for behavior that belongs to a repo or should travel
+  with a team. Use global/personal agents for cross-project habits that truly
+  belong to the operator. Productized packages stay operator-neutral and
+  project-scoped by default.
+- Use explicit tool and MCP restrictions. Review, research, critique, and audit
+  agents should be read-only unless the approved task requires writes. A prompt
+  saying "do not read that" is not the same as a tool boundary.
+- Choose the cheapest model that can do the work well: cheaper models for bulk
+  reading, extraction, and summarization; stronger models for judgment-heavy
+  synthesis, architecture, risk, and final decisions. Inherit the parent model
+  only when that cost is intentional.
+- Use max-turns or an explicit stop gate for open-ended research, repeated
+  review, or any loop-prone task. Be cautious with dynamic workflows because
+  broad parallelism can burn session limits quickly.
+- Keep a misfire-debug loop. When the expected agent does not fire, or the wrong
+  one fires, compare the exact request, the YAML description, malformed front
+  matter, and collisions with skills or similarly named agents. Tighten or
+  merge the trigger language instead of adding another overlapping agent.
+- Use a subagent when the work would flood the main context, read many files,
+  produce output the operator will not reread, repeat often, run independently
+  in parallel, or benefit from a fresh reviewer. Keep work inline when it is a
+  quick edit, depends on the full conversation, needs direct user questions, has
+  tightly dependent steps, requires agents to talk to each other, or the routing
+  overhead is larger than the work.
+
 ## 4. Buckets and capability catalog
 
 | Bucket | Capability | Focus | Replaces |

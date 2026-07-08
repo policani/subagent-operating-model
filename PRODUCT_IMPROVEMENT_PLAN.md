@@ -1,6 +1,6 @@
 # Product Improvement Plan
 
-Last updated: 2026-07-01
+Last updated: 2026-07-08
 
 ## Customer-language correction
 
@@ -34,6 +34,9 @@ of router decisions, state packets, quality gates, conflicts, and handoff notes.
    local, and when to stop at a gate.
 5. Add comparison language that avoids agent hype and emphasizes operating
    discipline.
+6. Add an agent-authoring checklist that covers trigger descriptions,
+   least-privilege tools, model choice, project/global placement, and misfire
+   debugging in Codex and Cowork-specific language.
 
 ## Acceptance criteria
 
@@ -42,3 +45,6 @@ of router decisions, state packets, quality gates, conflicts, and handoff notes.
   different objects.
 - The router remains the front door and avoids uncontrolled agent chains.
 - Public examples do not imply autonomous authority or executive decision power.
+- Codex and Cowork materials preserve intent parity while using native framing:
+  TOML/tool-grant language for Codex, Markdown/YAML/project-global language for
+  Cowork.

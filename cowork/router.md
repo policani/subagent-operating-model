@@ -25,6 +25,14 @@ PROPORTIONAL TRIAGE (do not become the overhead you prevent)
 - Simple, clearly single-capability ask: a fast, cheap pass - confirm scope, name the one capability, hand off. A line or two, then route.
 - Complex or ambiguous ask: run the full procedure below.
 
+SUBAGENT USAGE GUARDS
+- Delegate when the work would flood the main context, read many files, produce output the operator will not reread, repeat as a known workflow, run independently in parallel, or benefit from a fresh reviewer.
+- Keep work in the main session when it is a quick edit, depends on the full conversation, needs direct user questions, has tightly dependent steps, requires agents to talk to each other, or the routing overhead is larger than the work.
+- Prefer read-only tools, `disallowed_tools`, and explicit MCP limits for review, research, critique, and audit work. A prompt reminder is not a permission boundary.
+- Use cheaper models for bulk reading, extraction, and summarization; reserve stronger models for judgment-heavy synthesis, architecture, risk, and final decisions.
+- For loop-prone research or repeated review, use max-turns or an explicit stop gate before delegating. Be cautious with dynamic workflows because broad parallelism can burn session limits quickly.
+- If a named or expected capability does not fire, or the wrong one fires, debug the trigger before adding another agent: compare the exact request, the YAML description, malformed front matter, and collisions with skills or similarly named agents. Tighten or merge the trigger language, then retry.
+
 ROUTING PROCEDURE
 1. Restate the request in one line and name the desired output.
 2. Chunk it and decide the minimum capability set that still protects the final state. State it as a numbered plan with the reason each capability is needed. If one capability covers it, route only that one.

@@ -157,6 +157,41 @@ defects without taking over the other role's work.
 - **Single-pass preference.** Prefer one capability over a chain. Add capabilities only when a distinct gate is genuinely required.
 - **Consolidation over repetition.** The router merges once; capabilities never repeat each other.
 
+### Agent authoring and evaluation protocol
+
+- In Codex, the trigger surface is `.codex/agents/*.toml`: `name`,
+  `description`, `model`, and `tools`. Keep descriptions compact and matchable
+  from natural language; include negative boundaries when a nearby capability
+  could be selected instead.
+- Treat TOML metadata as progressive disclosure. The description decides
+  whether Codex should load the capability; the `instructions` body carries the
+  deeper procedure.
+- Keep project-specific capabilities under the active project's `.codex/agents`
+  folder. Use personal/global Codex agents only for cross-project habits that
+  truly belong to the operator. Productized packages stay operator-neutral and
+  project-scoped by default.
+- Choose the least-privilege Codex tool set. Review, research, critique, and
+  audit capabilities should read by default; write-capable tools belong to
+  production capabilities such as implementation, documentation, or release
+  automation when the approved task requires them.
+- Choose the cheapest model that can do the work well: cheaper models for bulk
+  reading, extraction, and summarization; stronger models for judgment-heavy
+  synthesis, architecture, risk, and final decisions. Inherit a parent model
+  only when that cost is intentional.
+- Put a stop gate or turn budget in the state packet for open-ended research,
+  repeated review, or any loop-prone task. The router should stop expanding
+  dynamic or highly parallel work when session-limit risk outweighs value.
+- Keep a misfire-debug loop. When the expected capability does not fire, or the
+  wrong one fires, compare the exact request, the TOML description, overlapping
+  trigger keywords, and stale or duplicate installed agent files. Tighten or
+  merge the trigger language instead of adding another duplicate capability.
+- Use a subagent when the work would flood the main context, read many files,
+  produce output the operator will not reread, repeat often, run independently
+  in parallel, or benefit from a fresh reviewer. Keep work inline when it is a
+  quick edit, depends on the full conversation, needs direct user questions, has
+  tightly dependent steps, requires agents to talk to each other, or the routing
+  overhead is larger than the work.
+
 ## 4. Buckets and capability catalog
 
 | Bucket | Capability | Focus | Replaces |
